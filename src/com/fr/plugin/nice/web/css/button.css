@@ -1,0 +1,81 @@
+/* ==================================================================== */
+/* CHECKBOX TYPE 10 ---------------------------------------------------- */
+/* ==================================================================== */
+input[type="checkbox"] {
+	display: none;
+}
+
+[id^="fs-login-remember"] + label {
+	background-color: #fafbfa;
+	padding: 9px;
+	border-radius: 50px;
+	display: inline-block;
+	position: relative;
+	margin-right: 30px;
+	-webkit-transition: all 0.1s ease-in;
+	transition: all 0.1s ease-in;
+	width: 18px;
+	height: 1px;
+	vertical-align: middle
+}
+
+[id^="fs-login-remember"] + label:after {
+	content: ' ';
+	position: absolute;
+	top: 0;
+	-webkit-transition: box-shadow 0.1s ease-in;
+	transition: box-shadow 0.1s ease-in;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 100px;
+	box-shadow: inset 0 0 0 0 #eee, 0 0 1px rgba(0,0,0,0.4);
+}
+
+[id^="fs-login-remember"] + label:before {
+	content: ' ';
+	position: absolute;
+	background: white;
+	top: 1px;
+	left: 1px;
+	z-index: 999999;
+	width: 17px;
+	-webkit-transition: all 0.1s ease-in;
+	transition: all 0.1s ease-in;
+	height: 17px;
+	border-radius: 100px;
+	box-shadow: 0 3px 1px rgba(0,0,0,0.05), 0 0px 1px rgba(0,0,0,0.3);
+}
+
+[id^="fs-login-remember"]:active + label:after {
+	box-shadow: inset 0 0 0 20px #eee, 0 0 1px #eee;
+}
+
+[id^="fs-login-remember"]:active + label:before {
+	width: 37px;
+}
+
+[id^="fs-login-remember"]:checked:active + label:before {
+	width: 20px;
+	left: 20px;
+}
+
+[id^="fs-login-remember"] + label:active {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+[id^="fs-login-remember"]:checked + label:before {
+	content: ' ';
+	position: absolute;
+	left: 20px;
+	border-radius: 100px;
+}
+
+[id^="fs-login-remember"]:checked + label:after {
+	content: ' ';
+	font-size: 1.5em;
+	position: absolute;
+	background: #51C6F5;
+	box-shadow: 0 0 1px #51C6F5;
+}
+

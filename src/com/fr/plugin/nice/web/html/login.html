@@ -1,0 +1,74 @@
+<!doctype html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/tr/xhtml1/DTD/xhtm1-transitional.dtd">
+<html>
+<head>
+    <title>数据决策系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="${servletURL}?op=emb&resource=finereport.js&inter=${__locale__}"></script>
+    <script type="text/javascript">
+        function doSubmit() {
+            var username = FR.cjkEncode(document.getElementById("fs-login-username").value);  //获取输入的用户名
+            var password = FR.cjkEncode(document.getElementById("fs-login-password").value);  //获取输入的参数
+            var remember = FR.cjkEncode($("input[type=checkbox]:checked").val());  //是否保持登录
+            jQuery.ajax({
+                url: FR.servletURL + "?op=fs_load&cmd=sso",//单点登录的管理平台报表服务器
+                dataType: "jsonp",//跨域采用jsonp方式
+                data: {"fr_username": username, "fr_password": password, "fr_remember": remember},//获取用户名密码以及是否保持登录
+                jsonp: "callback",
+                timeout: 5000,//超时时间（单位：毫秒）
+                success: function (data) {
+                    if (data.status === "success") {
+                        window.location = data.url;//认证成功跳转页面，因为ajax不支持重定向所有需要跳转的设置
+                        //登录成功
+                    } else if (data.status === "fail") {
+                        alert("用户名或密码错误");//登录失败（用户名或密码错误）
+                    }
+                },
+                error: function () {
+                    alert("超时或服务器其他错误");// 登录失败（超时或服务器其他错误）
+                }
+            });
+        }
+    </script>
+    <link href="${servletURL}?op=resource&resource=/com/fr/plugin/nice/web/css/login1.css" rel="stylesheet" type="text/css">
+    <link href="${servletURL}?op=resource&resource=/com/fr/plugin/nice/web/css/button.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="fs-login-background">
+    <img class="fs-login-scalebg-img" src="${servletURL}?op=resource&resource=/com/fr/plugin/nice/web/images/login/background.jpg" alt="" galleryimg="no"
+         style="margin-left:-360px; margin-top:-190px; width: 1920px; height:1080px;" boder="0">
+</div>
+<div id="fs-login">
+    <div id="fs-login-scalebg">
+        <img class="fs-login-scalebg-img" src="${servletURL}?op=resource&resource=/com/fr/plugin/nice/web/images/login/background.jpg" alt="" galleryimg="no"
+             style="margin-left:-440px; margin-top:-219.9px; width: 1280px; height:720px;" boder="0">
+    </div>
+    <div id="fs-login-content">
+        <div id="fs-login-title">${company}</div>
+        <div class="fs-login-input fs-login-input-username">
+            <input id="fs-login-username" tabindex="1" placeholder="用户名" title="用户名" type="text">
+        </div>
+        <div class="fs-login-input fs-login-input-password">
+            <input id="fs-login-password" tabindex="2" placeholder="密码" title="密码" type="password">
+        </div>
+        <a id="fs-login-btn" tabindex="3" href="#" expired="" onclick="doSubmit()">登录</a>
+        <div class="fs-login-check" vertical-align:middle text-align:center>
+            <div class="fs-login-remember">保持登录状态:
+                <input id="fs-login-remember" type="checkbox" name="check" value="true" checked="checked">
+                <label for="fs-login-remember"></label>
+                <script type="text/javascript">
+                    function changevalue() {
+                        var check = document.getElementById("fs-login-remember");
+                        if (check.checked == true)
+                            check.value = "true";
+                        if (check.checked == false)
+                            check.value = "false";
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
