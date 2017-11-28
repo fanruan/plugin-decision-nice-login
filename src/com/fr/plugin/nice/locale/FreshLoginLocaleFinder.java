@@ -1,5 +1,6 @@
 package com.fr.plugin.nice.locale;
 
+import com.fr.plugin.transform.FunctionRecorder;
 import com.fr.stable.fun.impl.AbstractLocaleFinder;
 
 /**

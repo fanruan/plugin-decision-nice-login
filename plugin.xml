@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <plugin>
+    <main-package>com.fr.plugin.nice</main-package>
     <id>com.fr.plugin.nice.login</id>
     <name><![CDATA[登录界面]]></name>
     <active>yes</active>
     <hidden>no</hidden>
     <version>1.0</version>
-    <env-version>8.0</env-version>
+    <env-version>9.0</env-version>
     <jartime>2017-03-22</jartime>
     <vendor>fanruan.chenlong</vendor>
     <description><![CDATA[决策系统登录界面]]></description>
@@ -20,4 +21,5 @@
     <extra-platform>
         <AccessProvider class="com.fr.plugin.nice.NiceLoginAccess"/>
     </extra-platform>
+    <function-recorder class="com.fr.plugin.nice.NiceLoginAccess"/>
 </plugin>
